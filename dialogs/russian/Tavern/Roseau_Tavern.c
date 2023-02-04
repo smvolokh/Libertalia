@@ -53,6 +53,15 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 				link.l1 = "Кардиф, я слышал, что вас почтил своим присутствием сам Маркус Тиракс, не подскажешь где он остановился?";
 				link.l1.go = "RevengeCorsair_Dominica";
 			}
+			
+			// Отступники веры
+			if (CheckAttribute(pchar, "questTemp.ApostatesInit") && pchar.questTemp.ApostatesInit == "Start")
+			{
+				DeleteAttribute(pchar, "questTemp.ApostatesInit");
+				DoQuestCheckDelay("GothicApostates_of_the_faith", 0.5);
+				link.l1 = "Кардиф, не расскажешь последние новости? Или, может, найдется какая-нибудь работёнка для меня?";
+				link.l1.go = "Apostates";
+			}
 
 			                    // Одержимые -->
 			/*
@@ -279,6 +288,27 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		npchar.quest.Obsession = "true";
                                     AddDialogExitQuestFunction("GothicObsessioninStart");
 		 break;
+		 
+		case "Apostates":
+			dialog.text = "Я слышал о какой-то новой организации, то ли ассасины какие-то, то ли фанатики. Многого сказать не могу, потому что действуют они очень скрытно, но есть сведения, что у них какое-то дело на Кубе. Если хочешь, можешь попробовать с ними встретиться.";
+			link.l1 = "Хм, звучит таинственно, пожалуй, стоит туда наведаться, возможно, из этого выгорит что-то интересное.";
+			link.l1.go = "Apostates_2";
+		break;
+		
+		case "Apostates_2":
+			dialog.text = "Попутного ветра, капитан!";
+			link.l1 = "Спасибо за информацию, Кардиф. А информация всегда стоит денег, так что держи.";
+			link.l1.go = "Apostates_3_money";
+			link.l2 = "Спасибо за информацию, Кардиф. До скорой встречи!";
+			link.l2.go = "exit";
+		break;
+		
+		case "Apostates_3_money":
+			dialog.text = "Спасибо большое, " + pchar.name + ", еще раз удачи тебе в твоих делах.";
+			link.l1 = "Благодарю, до скорой встречи.";
+			link.l1.go = "exit";
+			AddMoneyToCharacter(pchar, -5000);
+		break;
 
 
 	}

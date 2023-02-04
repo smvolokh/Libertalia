@@ -8518,6 +8518,7 @@ void MayakDieenemy_29(string qName) //
 	sld.item_date = "";
 	sld.Merchant.type = "company";
 	sld.money = TRADER_MIN_MONEY + rand(TRADER_NORM);
+	pchar.questTemp.ApostatesInit = "Start";
 }
 
 

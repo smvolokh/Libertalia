@@ -299,7 +299,7 @@ void ProcessDialogEvent()
 
  	case "MayakNoDieenemy_1":
 	PlaySound("VOICE\Russian\gotica\JACK\DIA_JACK_BANDITENWEG_14_01.wav");
-            	dialog.text = "Это правда! Наконец - то я смогу опять вернуться к своей работе.";
+            	dialog.text = "Это правда? Наконец-то я смогу опять вернуться к своей работе.";
         	link.l1 = "";
         	link.l1.go = "MayakNoDieenemy_2";
 		break;
